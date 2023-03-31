@@ -7,18 +7,12 @@ const Currency = () => {
     const { currency, dispatch } = useContext(AppContext);
 
     const [isOpen, setIsOpen] = useState(false);
-    const [hover, setHover] = useState(false);
 
-    const handleMouseEnter = () => {
-        setHover(true);
-    };
-
-    const handleMouseLeave = () => {
-        setHover(false);
-    };
-
-    const setCurrencyHandler = (currency) => {
-
+    const setCurrencyHandler = (currency,element) => {
+        const drops = ['dollar','pound','euro','ruppee'];
+        drops.forEach(drop => document.getElementById(drop).style.backgroundColor = '#93e399');
+        
+        document.getElementById(element).style.backgroundColor = '#FFFFFF';
         dispatch({
             type: 'CHG_CURRENCY',
             payload: currency,
@@ -62,14 +56,14 @@ const Currency = () => {
                 <li
                 >
                     <button
-                        //id="dollar"
+                        id="dollar"
                         className="dropdown-item"
                         type="button"
                         style={{ backgroundColor: '#93e399' }}
                         //style={{ backgroundColor: hover ? '#fff' : '#93e399' }}
                         //onMouseEnter={handleMouseEnter}
                         //onMouseLeave={handleMouseLeave}
-                        onClick={() => setCurrencyHandler('$')}
+                        onClick={(e) => setCurrencyHandler('$',e.target.id)}
                     >
                         $ Dollar
           </button>
@@ -77,14 +71,14 @@ const Currency = () => {
                 <li
                 >
                     <button
-                        //id="pound"
+                        id="pound"
                         className="dropdown-item"
                         type="button"
                         style={{ backgroundColor: '#93e399' }}
                         //style={{ backgroundColor: hover ? '#fff' : '#93e399' }}
                         //onMouseEnter={handleMouseEnter}
                         //onMouseLeave={handleMouseLeave}
-                        onClick={() => setCurrencyHandler('£')}
+                        onClick={(e) => {setCurrencyHandler('£',e.target.id)}}
                     >
                         £ Pound
           </button>
@@ -92,14 +86,14 @@ const Currency = () => {
                 <li
                 >
                     <button
-                        //id="euro"
+                        id="euro"
                         className="dropdown-item"
                         type="button"
                         style={{ backgroundColor: '#93e399' }}
                         //style={{ backgroundColor: hover ? '#fff' : '#93e399' }}
                         //onMouseEnter={handleMouseEnter}
                         //onMouseLeave={handleMouseLeave}
-                        onClick={() => setCurrencyHandler('€')}
+                        onClick={(e) => setCurrencyHandler('€',e.target.id)}
 
                     >
                         € Euro
@@ -108,14 +102,14 @@ const Currency = () => {
 
                 <li>
                     <button
-                        //id="ruppee"
+                        id="ruppee"
                         className="dropdown-item"
                         type="button"
                         style={{ backgroundColor: '#93e399' }}
                         //style={{ backgroundColor: hover ? '#fff' : '#93e399' }}
                         //onMouseEnter={handleMouseEnter}
                         //onMouseLeave={handleMouseLeave}
-                        onClick={() => setCurrencyHandler('₹')}
+                        onClick={(e) => setCurrencyHandler('₹',e.target.id)}
                     >
                         ₹ Ruppee
           </button>
@@ -128,10 +122,3 @@ const Currency = () => {
 };
 
 export default Currency;
-
-{/*<select className="dropdown-item"  style={{ backgroundColor: '#93e399', color: '#fff' }} onChange={(choice) => setCurrencyHandler(choice.target.value)}>
-        <option defaultValue value="$" name="$">$ Dollar</option>
-        <option value="£" name="£">£ Pound</option>
-        <option value="₹" name="₹">₹ Ruppee</option>
-        <option value="€" name="€">€ Euro</option>
-</select>*/}
